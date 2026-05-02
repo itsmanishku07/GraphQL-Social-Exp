@@ -1,0 +1,64 @@
+type Users
+{
+    userid:ID,
+    username:String,
+    password:String,
+    joindate:String
+}
+
+type UserInfo
+{
+    userid:ID
+    firstname:String
+    lastname:String
+    dob:String
+    bio:String
+    following:Int
+    followers:Int
+}
+
+type Posts
+{
+    postid:ID
+    userid:ID
+    postcontent:String
+    likes:Int
+    postdate:String
+    textcontent:String
+}
+
+type Comments
+{
+    commentid:ID
+    postid:ID
+    commentlikes:Int
+    commnet:String
+    commenter:String
+    commentdate:String
+}
+
+type Query
+{
+    getallusers:[Users]
+    getUserInfo(userid:ID):UserInfo
+    getAllPost:[Posts]
+    postComments(postid:ID):[Comments]
+
+
+}
+
+type Mutation
+{
+    signup(username:String, password:String):Users
+    login(username:String, password:String):Users
+    saveUserInfo(userid:ID, firstname:String, lastname:String, dob:String, bio:String, following:Int, followers:Int):UserInfo
+
+    getPostById(postid:ID):Posts
+    deletePost(postid:ID):String
+    createPost(userid:ID,postContent:String,postdate:String,textcontent:String):Posts
+
+    addComment(postid:ID, comment:String, commenter:String, commentDate:String):Comments
+    likeComment(commentid:ID):Comments
+    deleteComment(commentid:ID):String
+
+}
